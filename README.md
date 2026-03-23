@@ -38,6 +38,27 @@ You can test the **Context dir** field by deploying a deeply nested application.
 
 ---
 
+## 📝 How to Fill the "Import from Git" Form in OKD
+To get the best testing experience, here is exactly what you should fill in the form fields. This matches the OKD UI precisely:
+
+### 1. Git & Context Configuration
+- **Git Repo URL:** `https://github.com/b6428259/odk-test-ion.git`
+- **Git reference:** *(Choose ONE of the branches, tags, or commit hashes from the list above. e.g., `dev` or `v1.0.0`)*
+- **Context dir:** `/` *(Change to `/app-v2` ONLY if you are testing the `context-test` branch)*
+
+### 2. General Configuration
+- **Application name:** `odk-test-ion-git-app` *(Leave as default to group all tests together)*
+- **Name:** *We recommend changing this to match what you are testing so you don't overwrite previous tests. Examples: `test-branch-dev`, `test-tag-v1`, `test-commit-01`.*
+
+### 3. Builder & Deploy Options
+- **Builder Image:** `Node.js 22-minimal` *(OKD should auto-detect this because of `package.json`)*
+- **Target port:** `8080` *(Required: The Node.js application is configured to listen on port 8080)*
+- **Create a route:** `[X] Checked` *(So you can access the web page after it deploys)*
+
+Once you have filled this out, click **Create** and wait for the Pod to build and deploy. When you click the resulting Route URL, the webpage will show you exactly which version successfully deployed!
+
+---
+
 ## What does the app show?
 This Node.js app serves a static `index.html` page that natively displays:
 - The custom version string injected directly into the HTML corresponding to the branch/tag/commit.
