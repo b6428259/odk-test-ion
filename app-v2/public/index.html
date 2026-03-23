@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OKD Deployment Tester</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="status-indicator"></div>
+            <h1>OKD / OpenShift Deployment Tester</h1>
+            <p>Use this app to verify deployments from different tags, branches, and commits.</p>
+        </header>
+
+        <main>
+            <div class="cards-grid">
+                <div class="card card-accent">
+                    <h2>Environment Variables</h2>
+                    <p>Details exposed by OKD during Source-to-Image (S2I) build and runtime runtime.</p>
+                    
+                    <ul class="data-list">
+                        <li>
+                            <span class="label">Git Branch / Tag Reference (<span class="code">OPENSHIFT_BUILD_REFERENCE</span>)</span>
+                            <span class="value commit-ref">{{BUILD_REFERENCE}}</span>
+                        </li>
+                        <li>
+                            <span class="label">Git Commit Hash (<span class="code">OPENSHIFT_BUILD_COMMIT</span>)</span>
+                            <span class="value commit-hash">{{BUILD_COMMIT}}</span>
+                        </li>
+                        <li>
+                            <span class="label">Kubernetes Pod Name (<span class="code">HOSTNAME</span>)</span>
+                            <span class="value pod-name">{{POD_NAME}}</span>
+                        </li>
+                        <li>
+                            <span class="label">Project Namespace (<span class="code">OPENSHIFT_BUILD_NAMESPACE</span>)</span>
+                            <span class="value namespace">{{BUILD_NAMESPACE}}</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h2>Manual Version Tracker</h2>
+                    <p>Update this section directly in the <span class="code">index.html</span> file to ensure the new git reference was pulled and built successfully.</p>
+                    <div class="version-badge">Context Dir Test</div>
+                    <div class="custom-message-box">
+                        <span class="quote">"</span>
+                        <p class="custom-msg">{{CUSTOM_MESSAGE}}</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Running on Node.js {{NODE_VERSION}}</p>
+        </footer>
+    </div>
+</body>
+</html>
